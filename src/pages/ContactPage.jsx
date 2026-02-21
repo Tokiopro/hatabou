@@ -1,10 +1,21 @@
 import { Phone, MessageCircle, Mail } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
+import SEO from '../components/seo/SEO';
+import Breadcrumb from '../components/ui/Breadcrumb';
+import { createBreadcrumbList } from '../utils/structuredData';
 
 export default function ContactPage() {
+  const bcItems = [{ label: 'お問い合わせ・無料見積り' }];
+  const jsonLd = createBreadcrumbList([{ label: 'ホーム', path: '/' }, ...bcItems]);
+
   return (
     <div className="animate-fade-in pt-20">
+      <SEO
+        title="お問い合わせ・無料見積り"
+        description="建築鈑金はたへのお問い合わせ・無料見積りはこちら。電話・LINE・メールフォームで24時間受付中。相見積もり歓迎、しつこい営業はいたしません。"
+        jsonLd={jsonLd}
+      />
       <div className="bg-emerald-800 text-white py-16 px-4 text-center">
         <h1 className="text-3xl md:text-5xl font-bold mb-4">
           お問い合わせ・無料見積り
@@ -13,24 +24,27 @@ export default function ContactPage() {
           相見積もり歓迎。しつこい営業はいたしません。
         </p>
       </div>
+      <Breadcrumb items={bcItems} />
 
       <div className="container mx-auto max-w-4xl py-16 px-4">
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <Card className="text-center border-t-8 border-t-orange-500 hover:shadow-xl transition-shadow cursor-pointer">
-            <Phone className="w-16 h-16 text-orange-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-slate-800 mb-2">
-              お電話でのご相談
-            </h2>
-            <p className="text-slate-600 mb-4">
-              お急ぎの方、直接話したい方はこちら
-            </p>
-            <div className="text-4xl font-extrabold text-orange-600 mb-2 tracking-wider">
-              000-000-0000
-            </div>
-            <p className="text-sm text-slate-500">
-              営業時間 8:00〜18:00 (日祝休)
-            </p>
-          </Card>
+          <a href="tel:000-000-0000" className="block">
+            <Card className="text-center border-t-8 border-t-orange-500 hover:shadow-xl transition-shadow cursor-pointer h-full">
+              <Phone className="w-16 h-16 text-orange-500 mx-auto mb-4" />
+              <h2 className="text-2xl font-bold text-slate-800 mb-2">
+                お電話でのご相談
+              </h2>
+              <p className="text-slate-600 mb-4">
+                お急ぎの方、直接話したい方はこちら
+              </p>
+              <div className="text-4xl font-extrabold text-orange-600 mb-2 tracking-wider">
+                000-000-0000
+              </div>
+              <p className="text-sm text-slate-500">
+                営業時間 8:00〜18:00 (日祝休)
+              </p>
+            </Card>
+          </a>
 
           <Card className="text-center border-t-8 border-t-line-green hover:shadow-xl transition-shadow cursor-pointer">
             <MessageCircle className="w-16 h-16 text-line-green mx-auto mb-4" />

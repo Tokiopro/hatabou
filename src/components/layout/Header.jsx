@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { Phone, Menu, X } from 'lucide-react';
-import { navItems } from '../../data/navigation';
+import { navItems, secondaryNavItems } from '../../data/navigation';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
 
 export default function Header() {
@@ -9,6 +9,8 @@ export default function Header() {
   const scrolled = useScrollPosition();
 
   const closeMenu = () => setIsMobileMenuOpen(false);
+
+  const allNavItems = [...navItems, ...secondaryNavItems];
 
   return (
     <header
@@ -20,7 +22,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center group" onClick={closeMenu}>
-          <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-800 rounded-full flex items-center justify-center text-[10px] text-white mr-3 overflow-hidden border-2 border-emerald-600 group-hover:shadow-lg transition-all shadow-md shrink-0" />
+          <img src="/ロゴ.png" alt="建築鈑金はた" className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-emerald-600 group-hover:shadow-lg transition-all shadow-md shrink-0 mr-3" />
           <div className="flex flex-col">
             <span className="text-[10px] md:text-xs font-bold text-emerald-600 tracking-wider mb-0.5">
               福井の屋根・外壁・雨樋リフォーム
@@ -77,7 +79,7 @@ export default function Header() {
       {/* Mobile Nav Dropdown */}
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 flex flex-col">
-          {navItems.map((item) => (
+          {allNavItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}

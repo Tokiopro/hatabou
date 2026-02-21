@@ -1,15 +1,29 @@
 import { ThumbsUp } from 'lucide-react';
 import { testimonials } from '../data/testimonials';
+import SEO from '../components/seo/SEO';
+import Breadcrumb from '../components/ui/Breadcrumb';
+import CTABanner from '../components/ui/CTABanner';
+import SimplePage from '../components/layout/SimplePage';
+import { createBreadcrumbList } from '../utils/structuredData';
 
 export default function VoicePage() {
+  const bcItems = [{ label: 'お客様の声' }];
+  const jsonLd = createBreadcrumbList([{ label: 'ホーム', path: '/' }, ...bcItems]);
+
   return (
     <div className="animate-fade-in pt-20">
+      <SEO
+        title="お客様の声"
+        description="建築鈑金はたで屋根・外壁・雨樋リフォームをされたお客様の声をご紹介。福井県内の50代〜70代のお客様から高い評価をいただいています。"
+        jsonLd={jsonLd}
+      />
       <div className="bg-emerald-800 text-white py-16 px-4 text-center">
         <h1 className="text-3xl md:text-5xl font-bold mb-4">お客様の声</h1>
         <p className="text-xl text-emerald-100">
           築20年前後の屋根、同じ悩みを持つ方が選んでいます
         </p>
       </div>
+      <Breadcrumb items={bcItems} />
 
       <div className="container mx-auto max-w-4xl py-16 px-4 space-y-12">
         {testimonials.map((voice, i) => (
@@ -67,6 +81,8 @@ export default function VoicePage() {
           </div>
         ))}
       </div>
+
+      <CTABanner />
     </div>
   );
 }

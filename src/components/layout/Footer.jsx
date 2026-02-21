@@ -1,14 +1,16 @@
 import { Link } from 'react-router';
 import { MapPin, Clock, ChevronRight } from 'lucide-react';
-import { navItems } from '../../data/navigation';
+import { navItems, secondaryNavItems } from '../../data/navigation';
 
 export default function Footer() {
+  const allNavItems = [...navItems, ...secondaryNavItems];
+
   return (
     <footer className="bg-emerald-950 text-slate-300 py-12 px-4 border-t-4 border-orange-500">
       <div className="container mx-auto max-w-6xl grid md:grid-cols-3 gap-8">
         <div>
           <div className="flex items-center mb-4">
-            <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-[8px] text-white mr-3 overflow-hidden border border-emerald-600 shrink-0" />
+            <img src="/ロゴ.png" alt="建築鈑金はた" className="w-10 h-10 rounded-full object-cover border border-emerald-600 shrink-0 mr-3" />
             <h2 className="text-2xl font-bold text-white">建築鈑金はた</h2>
           </div>
           <p className="mb-4 text-sm leading-relaxed text-slate-400">
@@ -29,7 +31,7 @@ export default function Footer() {
             メニュー
           </h3>
           <ul className="space-y-3">
-            {navItems.map((item) => (
+            {allNavItems.map((item) => (
               <li key={item.path}>
                 <Link
                   to={item.path}
@@ -46,7 +48,7 @@ export default function Footer() {
                 className="hover:text-white transition-colors flex items-center text-sm"
               >
                 <ChevronRight className="w-4 h-4 mr-1 text-emerald-500" />{' '}
-                会社案内・よくある質問
+                お問い合わせ
               </Link>
             </li>
           </ul>

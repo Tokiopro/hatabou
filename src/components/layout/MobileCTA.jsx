@@ -11,13 +11,13 @@ export default function MobileCTA() {
         <MessageCircle className="w-6 h-6 mb-1" />
         LINE相談
       </Link>
-      <Link
-        to="/contact"
+      <a
+        href="tel:000-000-0000"
         className="flex-1 bg-orange-500 text-white py-3 flex flex-col items-center justify-center font-bold text-xs"
       >
         <Phone className="w-6 h-6 mb-1" />
         電話する
-      </Link>
+      </a>
     </div>
   );
 }

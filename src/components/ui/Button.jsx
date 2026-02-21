@@ -28,6 +28,14 @@ export default function Button({
   );
 
   if (href) {
+    const isExternal = href.startsWith('http') || href.startsWith('tel:') || href.startsWith('mailto:');
+    if (isExternal) {
+      return (
+        <a href={href} className={classes} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+          {content}
+        </a>
+      );
+    }
     return (
       <Link to={href} className={classes}>
         {content}
