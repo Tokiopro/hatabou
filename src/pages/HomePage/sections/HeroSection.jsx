@@ -1,0 +1,102 @@
+import { Phone, MessageCircle, AlertTriangle, ArrowDown } from 'lucide-react';
+import Button from '../../../components/ui/Button';
+
+export default function HeroSection() {
+  return (
+    <section className="bg-slate-900 pt-24 pb-16 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==')] opacity-5"></div>
+
+      <div className="container mx-auto max-w-4xl relative z-10 text-center">
+        {/* 1. 不安喚起 */}
+        <div className="mb-10">
+          <div className="inline-block bg-red-600 text-white font-bold px-4 py-1 rounded-full mb-4 text-sm md:text-base shadow-lg animate-pulse">
+            放置すると手遅れになるかもしれません
+          </div>
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+            福井の雪・雨を15年以上受けた屋根、
+            <br />
+            <span className="text-red-500 border-b-4 border-red-500">
+              そのままだと危険です
+            </span>
+          </h1>
+
+          <div className="relative max-w-2xl mx-auto rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700 bg-slate-800">
+            <div className="aspect-[4/3] flex items-center justify-center bg-slate-800 text-slate-400 font-bold p-4 text-center"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+            <div className="absolute bottom-4 left-0 w-full text-white font-bold text-lg md:text-xl px-4 drop-shadow-md">
+              見えない所で雨漏りが進行し、家全体が腐食する恐れがあります。
+            </div>
+          </div>
+        </div>
+
+        {/* 2. 悩み提起 */}
+        <div className="flex flex-col items-center justify-center mb-12">
+          <ArrowDown className="text-slate-500 w-10 h-10 mb-6 animate-bounce" />
+          <div className="bg-slate-800/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-slate-600 max-w-3xl transform -rotate-1 hover:rotate-0 transition-transform">
+            <p className="text-xl md:text-2xl font-bold text-white flex items-center justify-center mb-3">
+              <AlertTriangle className="text-yellow-400 mr-3 w-8 h-8 shrink-0" />
+              「でもそれを直すには、高いお金が必要で不安…」
+            </p>
+            <p className="text-slate-300 text-lg">
+              そう思って、修理を後回しにしていませんか？
+              <br className="hidden md:block" />
+              屋根の「全部葺き替え」は数百万円かかることもあり、簡単に決断できるものではありません。
+            </p>
+          </div>
+        </div>
+
+        {/* 3. ソリューション */}
+        <div className="mt-8 bg-gradient-to-br from-emerald-900 to-emerald-800 p-8 md:p-12 rounded-3xl border-4 border-emerald-500 relative overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-400 via-orange-500 to-emerald-400"></div>
+
+          <div className="inline-block bg-white text-emerald-900 font-extrabold px-6 py-2 rounded-full mb-6 text-lg md:text-xl shadow-lg transform -translate-y-4">
+            そのお悩み、建築鈑金はた が解決します！
+          </div>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
+            築15～30年のコロニアル屋根、
+            <br />
+            <span className="text-yellow-300 bg-yellow-900/30 px-2 rounded">
+              &quot;全部葺き替え&quot;
+            </span>
+            しなくても
+            <br className="md:hidden" />
+            直せます。
+          </h2>
+
+          <p className="text-lg md:text-xl text-emerald-50 mb-10 leading-relaxed font-medium bg-emerald-950/40 p-6 rounded-xl border border-emerald-700/50">
+            既存屋根に新しい屋根材をかぶせる{' '}
+            <span className="font-bold text-yellow-300 border-b-2 border-yellow-300 pb-1">
+              C/guard（シーガード）工法
+            </span>{' '}
+            なら、
+            <br className="hidden md:block" />
+            廃材や解体費をカットし、
+            <strong className="text-white text-xl">
+              費用負担を大幅に抑えた屋根リフォーム
+            </strong>
+            が可能です。
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
+            <Button
+              href="/contact"
+              icon={Phone}
+              className="w-full sm:w-auto text-xl py-5 px-8 shadow-orange-500/50 transform hover:scale-105"
+            >
+              お電話で無料相談
+            </Button>
+            <Button
+              variant="line"
+              href="/contact"
+              icon={MessageCircle}
+              className="w-full sm:w-auto text-xl py-5 px-8 transform hover:scale-105"
+            >
+              LINEで写真相談
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

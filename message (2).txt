@@ -1,0 +1,775 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Home, Wrench, ShieldCheck, Phone, MessageCircle, Mail, 
+  Menu, X, ChevronRight, CheckCircle, AlertTriangle, 
+  Camera, FileText, ThumbsUp, MapPin, Clock, DollarSign,
+  ChevronDown, Info, ArrowDown
+} from 'lucide-react';
+
+// --- Components ---
+
+const Button = ({ children, variant = 'primary', className = '', onClick, icon: Icon }) => {
+  const baseStyle = "inline-flex items-center justify-center font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg";
+  const variants = {
+    primary: "bg-orange-500 text-white hover:bg-orange-600 px-6 py-4 text-lg",
+    secondary: "bg-emerald-800 text-white hover:bg-emerald-900 px-6 py-4 text-lg",
+    line: "bg-[#06C755] text-white hover:bg-[#05b34c] px-6 py-4 text-lg",
+    outline: "border-2 border-emerald-800 text-emerald-800 hover:bg-emerald-50 px-4 py-2 text-md",
+  };
+  
+  return (
+    <button onClick={onClick} className={`${baseStyle} ${variants[variant]} ${className}`}>
+      {Icon && <Icon className="w-5 h-5 mr-2" />}
+      {children}
+    </button>
+  );
+};
+
+const SectionTitle = ({ children, subtitle }) => (
+  <div className="text-center mb-12">
+    <h2 className="text-3xl md:text-4xl font-bold text-emerald-900 mb-4">{children}</h2>
+    {subtitle && <p className="text-lg text-emerald-700 font-medium">{subtitle}</p>}
+    <div className="w-24 h-1 bg-orange-500 mx-auto mt-6 rounded-full"></div>
+  </div>
+);
+
+const Card = ({ children, className = '' }) => (
+  <div className={`bg-white rounded-xl shadow-md p-6 border border-slate-100 ${className}`}>
+    {children}
+  </div>
+);
+
+// --- Pages ---
+
+const HomePage = ({ navigate }) => (
+  <div className="animate-fadeIn">
+    {/* A: Attention (Hero Section - ストーリー型) */}
+    <section className="bg-slate-900 pt-24 pb-16 px-4 relative overflow-hidden">
+      {/* 背景のノイズ/テクスチャで不穏な空気を少し演出 */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==')] opacity-5"></div>
+      
+      <div className="container mx-auto max-w-4xl relative z-10 text-center">
+        
+        {/* 1. 不安喚起 */}
+        <div className="mb-10">
+          <div className="inline-block bg-red-600 text-white font-bold px-4 py-1 rounded-full mb-4 text-sm md:text-base shadow-lg animate-pulse">
+            放置すると手遅れになるかもしれません
+          </div>
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+            福井の雪・雨を15年以上受けた屋根、<br />
+            <span className="text-red-500 border-b-4 border-red-500">そのままだと危険です</span>
+          </h1>
+          
+          {/* 雨漏りイラスト画像エリア */}
+          <div className="relative max-w-2xl mx-auto rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700 bg-slate-800">
+             <div className="aspect-[4/3] flex items-center justify-center bg-slate-800 text-slate-400 font-bold p-4 text-center">
+                            </div>
+             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+             <div className="absolute bottom-4 left-0 w-full text-white font-bold text-lg md:text-xl px-4 drop-shadow-md">
+               見えない所で雨漏りが進行し、家全体が腐食する恐れがあります。
+             </div>
+          </div>
+        </div>
+
+        {/* 2. 悩み提起 */}
+        <div className="flex flex-col items-center justify-center mb-12">
+          <ArrowDown className="text-slate-500 w-10 h-10 mb-6 animate-bounce" />
+          <div className="bg-slate-800/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-slate-600 max-w-3xl transform -rotate-1 hover:rotate-0 transition-transform">
+            <p className="text-xl md:text-2xl font-bold text-white flex items-center justify-center mb-3">
+              <AlertTriangle className="text-yellow-400 mr-3 w-8 h-8 shrink-0" />
+              「でもそれを直すには、高いお金が必要で不安…」
+            </p>
+            <p className="text-slate-300 text-lg">
+              そう思って、修理を後回しにしていませんか？<br className="hidden md:block"/>
+              屋根の「全部葺き替え」は数百万円かかることもあり、簡単に決断できるものではありません。
+            </p>
+          </div>
+        </div>
+
+        {/* 3. ソリューション（解決策） */}
+        <div className="mt-8 bg-gradient-to-br from-emerald-900 to-emerald-800 p-8 md:p-12 rounded-3xl border-4 border-emerald-500 relative overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-400 via-orange-500 to-emerald-400"></div>
+           
+           <div className="inline-block bg-white text-emerald-900 font-extrabold px-6 py-2 rounded-full mb-6 text-lg md:text-xl shadow-lg transform -translate-y-4">
+             そのお悩み、建築鈑金はた が解決します！
+           </div>
+           
+           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
+             築15～30年のコロニアル屋根、<br />
+             <span className="text-yellow-300 bg-yellow-900/30 px-2 rounded">“全部葺き替え”</span>しなくても<br className="md:hidden"/>直せます。
+           </h2>
+           
+           <p className="text-lg md:text-xl text-emerald-50 mb-10 leading-relaxed font-medium bg-emerald-950/40 p-6 rounded-xl border border-emerald-700/50">
+             既存屋根に新しい屋根材をかぶせる <span className="font-bold text-yellow-300 border-b-2 border-yellow-300 pb-1">C/guard（シーガード）工法</span> なら、<br className="hidden md:block" />
+             廃材や解体費をカットし、<strong className="text-white text-xl">費用負担を大幅に抑えた屋根リフォーム</strong>が可能です。
+           </p>
+           
+           <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
+              <Button onClick={() => navigate('contact')} icon={Phone} className="w-full sm:w-auto text-xl py-5 px-8 shadow-orange-500/50 transform hover:scale-105">
+                お電話で無料相談
+              </Button>
+              <Button variant="line" onClick={() => navigate('contact')} icon={MessageCircle} className="w-full sm:w-auto text-xl py-5 px-8 transform hover:scale-105">
+                LINEで写真相談
+              </Button>
+            </div>
+        </div>
+
+      </div>
+    </section>
+
+    {/* I: Interest (劣化チェックと危機感) */}
+    <section className="py-20 bg-slate-50 px-4">
+      <div className="container mx-auto max-w-5xl">
+        <SectionTitle subtitle="「まだ大丈夫」が一番危険です">こんな屋根のサイン、放置していませんか？</SectionTitle>
+        
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {[
+            { title: '塗装の剥がれ・めくれ', desc: '防水機能が落ち、屋根材自体が水を吸い始めている状態です。' },
+            { title: 'ひび割れ・欠け', desc: '隙間から雨水が侵入し、内部の木材を腐食させる原因になります。' },
+            { title: 'コケ・黒ずみ', desc: '水はけが悪くなっており、屋根材の劣化が進行している証拠です。' }
+          ].map((item, i) => (
+            <Card key={i} className="text-center border-t-4 border-t-emerald-600 hover:-translate-y-1 transition-transform">
+              <div className="w-full h-40 bg-slate-200 rounded-lg mb-4 flex items-center justify-center text-slate-400">
+                              </div>
+              <h3 className="text-xl font-bold text-emerald-900 mb-2">{item.title}</h3>
+              <p className="text-slate-600 text-left">{item.desc}</p>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-12 bg-white p-8 rounded-xl shadow-sm border border-slate-200 max-w-4xl mx-auto">
+          <h4 className="text-xl font-bold text-emerald-900 mb-4 border-b pb-2 flex items-center">
+            <ShieldCheck className="text-emerald-600 mr-2" /> 訪問販売で不安になった50代・60代の方へ
+          </h4>
+          <p className="text-slate-700 leading-relaxed">
+            「近くで工事をしていて、お宅の屋根が浮いているのが見えた」「今すぐ工事が必要」「火災保険で無料になる」といった突然の訪問営業にご注意ください。<br />
+            焦って契約せず、まずは地元の建築鈑金のプロによる<strong>“冷静な状態確認（現地調査）”</strong>をおすすめします。私たちはしつこい営業は一切いたしません。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* D: Desire (C/guardの価値・選ばれる理由) */}
+    <section className="py-20 bg-white px-4">
+      <div className="container mx-auto max-w-5xl">
+        <SectionTitle subtitle="葺き替えなくても大丈夫な理由">費用と負担を抑える「C/guard工法」</SectionTitle>
+        
+        <div className="flex flex-col md:flex-row gap-8 items-center mb-16">
+          <div className="w-full md:w-1/2">
+            <div className="aspect-video bg-emerald-50 rounded-xl flex flex-col items-center justify-center border-2 border-dashed border-emerald-200 p-4 text-center">
+              <Wrench className="w-16 h-16 text-emerald-400 mb-4" />
+              <span className="text-emerald-700 font-bold mb-2">既存屋根にかぶせる工法の図解</span>
+              <span className="text-emerald-600/70 text-sm">※古い屋根を剥がさないため、廃材処分費や工期を大幅にカットできます</span>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2">
+            <h3 className="text-2xl font-bold text-emerald-900 mb-4">今の屋根を壊さず、上から新しい屋根をかぶせます</h3>
+            <p className="text-lg text-slate-700 mb-6 leading-relaxed">
+              C/guard（シーガード）は、既存のコロニアル屋根の上に専用の接着剤と工法で新しい屋根材をかぶせるリフォームです。廃材が出にくく、工期も短いため、お財布にも暮らしにも優しいのが特徴です。
+            </p>
+            <ul className="space-y-3">
+              {[
+                '葺き替えより費用を抑えやすい（約20%抑えられるケースも）',
+                '解体時のホコリや騒音が少なく、ご近所への負担減',
+                '古い屋根材（アスベスト含有の可能性）を飛散させない',
+                '住みながらの工事が可能で、普段通りの生活ができます'
+              ].map((text, i) => (
+                <li key={i} className="flex items-start">
+                  <CheckCircle className="w-6 h-6 text-orange-500 mr-2 shrink-0" />
+                  <span className="text-slate-800 font-medium">{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-emerald-50 p-8 md:p-12 rounded-2xl mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold text-emerald-900 mb-8 text-center">建築鈑金はた が選ばれる3つの理由</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="hover:shadow-lg transition-shadow">
+              <h4 className="text-xl font-bold text-emerald-800 mb-3 border-b border-emerald-100 pb-2">1. 鈑金職人の「雨仕舞い」技術</h4>
+              <p className="text-slate-600">屋根はただかぶせるだけでなく、雨を適切に逃がす「雨仕舞い」が命です。建築鈑金専門の技術で、見えない部分も徹底的に施工します。</p>
+            </Card>
+            <Card className="hover:shadow-lg transition-shadow">
+              <h4 className="text-xl font-bold text-emerald-800 mb-3 border-b border-emerald-100 pb-2">2. 屋根・外壁・雨樋の一括提案</h4>
+              <p className="text-slate-600">屋根だけでなく外壁や雨樋もまとめて診断可能。足場を一度に組めるため、将来バラバラに工事するよりトータルコストを大幅に削減できます。</p>
+            </Card>
+            <Card className="hover:shadow-lg transition-shadow">
+              <h4 className="text-xl font-bold text-emerald-800 mb-3 border-b border-emerald-100 pb-2">3. 地元福井の地域密着対応</h4>
+              <p className="text-slate-600">福井県の気候（雪や雨）を熟知した施工。何かあればすぐに駆けつけられる距離感で、施工後のアフターフォローも万全です。</p>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* O: Offer (価格の目安・安心材料) */}
+    <section className="py-20 bg-slate-800 text-white px-4">
+      <div className="container mx-auto max-w-5xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">リフォーム費用の目安</h2>
+          <p className="text-emerald-200">価格が分からない不安をなくすため、目安を公開しています。</p>
+          <div className="w-24 h-1 bg-orange-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+          <div className="bg-slate-700 p-6 rounded-xl border border-slate-600 text-center">
+            <h3 className="text-xl font-bold text-emerald-300 mb-2">屋根工事 (C/guard等)</h3>
+            <div className="text-3xl font-bold mb-2 text-white">150<span className="text-lg font-normal">〜</span>250<span className="text-xl">万円</span></div>
+            <p className="text-sm text-slate-300">（足場代込み）</p>
+          </div>
+          <div className="bg-slate-700 p-6 rounded-xl border border-slate-600 text-center">
+            <h3 className="text-xl font-bold text-emerald-300 mb-2">外壁工事</h3>
+            <div className="text-3xl font-bold mb-2 text-white">200<span className="text-lg font-normal">〜</span>400<span className="text-xl">万円</span></div>
+            <p className="text-sm text-slate-300">（足場代込み / 材料により変動）</p>
+          </div>
+          <div className="bg-slate-700 p-6 rounded-xl border border-slate-600 text-center">
+            <h3 className="text-xl font-bold text-emerald-300 mb-2">雨樋工事</h3>
+            <div className="text-3xl font-bold mb-2 text-white">20<span className="text-lg font-normal">〜</span>30<span className="text-xl">万円</span></div>
+            <p className="text-sm text-slate-300">（部分・全交換により変動）</p>
+          </div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-slate-300 text-sm mb-8">
+            ※上記はあくまで目安です。屋根の形状、傷み具合、足場条件によって変動いたします。<br />
+            正確な金額は、現地確認のうえで正式なお見積りとしてご提示させていただきます。
+          </p>
+          
+          <div className="bg-emerald-900 border border-emerald-700 p-6 md:p-8 rounded-xl inline-block text-left shadow-lg">
+            <h4 className="text-xl md:text-2xl font-bold text-orange-400 mb-6 flex items-center justify-center">
+              <CheckCircle className="mr-2" /> 当店からの3つの「安心のお約束」
+            </h4>
+            <ul className="space-y-4 text-lg font-medium">
+              <li className="flex items-center"><CheckCircle className="w-6 h-6 text-emerald-400 mr-3 shrink-0" /> 現地調査・点検・お見積りは【完全無料】です。</li>
+              <li className="flex items-center"><CheckCircle className="w-6 h-6 text-emerald-400 mr-3 shrink-0" /> 屋根の状態がわかる【写真付き点検レポート】をお渡しします。</li>
+              <li className="flex items-center"><CheckCircle className="w-6 h-6 text-emerald-400 mr-3 shrink-0" /> 相見積もり歓迎。しつこい電話営業や訪問は一切いたしません。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* M: Method (問い合わせ〜工事の流れ) & CTA */}
+    <section className="py-20 bg-slate-50 px-4">
+      <div className="container mx-auto max-w-4xl">
+        <SectionTitle subtitle="安心でスムーズな対応をお約束します">お問い合わせから工事完了までの流れ</SectionTitle>
+        
+        <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-emerald-200">
+          {[
+            { step: '01', title: 'お問い合わせ（電話・LINE・フォーム）', desc: 'まずは「屋根が気になる」「点検してほしい」とお気軽にご連絡ください。' },
+            { step: '02', title: '日程調整・現地調査', desc: 'ご都合の良い日時に伺い、屋根・外壁・雨樋をプロの目で丁寧にチェックします。' },
+            { step: '03', title: '写真で状態説明 ＆ お見積り提示', desc: '撮影した写真をご覧いただきながら、現状と必要な工事、お見積りをわかりやすくご説明します。' },
+            { step: '04', title: 'ご契約・工事日の決定', desc: '内容にご納得いただけましたらご契約となります。ご近所様へのご挨拶も当店が行います。' },
+            { step: '05', title: '施工 ＆ 完了確認', desc: '安全第一で施工を行い、完了後はお客様と一緒に仕上がりを確認いたします。' }
+          ].map((item, i) => (
+            <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-600 text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-md z-10">
+                {item.step}
+              </div>
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-xl shadow-md border border-slate-100 hover:border-emerald-200 transition-colors">
+                <h4 className="text-xl font-bold text-emerald-900 mb-2">{item.title}</h4>
+                <p className="text-slate-600">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-20 text-center bg-white p-8 md:p-12 rounded-3xl shadow-xl border-t-8 border-orange-500">
+          <h3 className="text-3xl font-bold text-emerald-900 mb-6">まずは、お気軽にご相談ください</h3>
+          <p className="text-lg text-slate-700 mb-10">
+            「ちょっと見てもらうだけ」「見積もりだけ」でも大歓迎です。<br />
+            福井県内の皆様の住まいを、適正価格でしっかりお守りします。
+          </p>
+          <div className="flex flex-col md:flex-row justify-center gap-6">
+            <Button onClick={() => navigate('contact')} icon={Phone} className="w-full md:w-auto text-xl py-5 px-10 shadow-orange-500/50">
+              000-000-0000<br/><span className="text-sm font-normal">（営業時間 8:00〜18:00 日祝休）</span>
+            </Button>
+            <Button variant="line" onClick={() => navigate('contact')} icon={MessageCircle} className="w-full md:w-auto text-xl py-5 px-10">
+              LINEで写真を送る<br/><span className="text-sm font-normal">（24時間受付中）</span>
+            </Button>
+          </div>
+          <div className="mt-8">
+            <button onClick={() => navigate('contact')} className="text-emerald-700 font-bold underline hover:text-emerald-900 flex items-center justify-center mx-auto transition-colors">
+              <Mail className="w-5 h-5 mr-2" /> メール・見積フォームはこちら
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+);
+
+// 4-1. C/guard LP風ページ
+const RoofingPage = ({ navigate }) => (
+  <div className="animate-fadeIn pt-20">
+    <div className="bg-emerald-800 text-white py-16 px-4 text-center">
+      <h1 className="text-3xl md:text-5xl font-bold mb-4">屋根リフォーム（C/guard工法）</h1>
+      <p className="text-xl text-emerald-100">築15～30年のコロニアル屋根に最適な、賢いリフォーム術</p>
+    </div>
+    
+    <div className="container mx-auto max-w-4xl py-16 px-4 space-y-16">
+      <section>
+        <h2 className="text-3xl font-bold text-emerald-900 mb-6 text-center border-b-2 border-orange-500 pb-2 inline-block">葺き替えの前に、知ってほしいこと</h2>
+        <div className="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+          <p className="text-lg text-slate-700 leading-relaxed mb-6">
+            「屋根が傷んできたから、全部剥がしてやり直さないと…」と思っていませんか？<br />
+            実は、下地の傷みが激しくない場合、古い屋根をそのまま残して上から新しい屋根材をかぶせる<strong>「カバー工法（C/guard）」</strong>という選択肢があります。
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-red-50 p-6 rounded-lg border border-red-200">
+              <h3 className="text-xl font-bold text-red-800 mb-3 text-center">従来の葺き替え</h3>
+              <ul className="space-y-2 text-slate-700">
+                <li>・既存屋根の解体費用がかかる</li>
+                <li>・廃材の処分費用が高い</li>
+                <li>・アスベスト飛散のリスクがある</li>
+                <li>・工期が長く、生活に負担がかかる</li>
+              </ul>
+            </div>
+            <div className="bg-emerald-50 p-6 rounded-lg border border-emerald-200">
+              <h3 className="text-xl font-bold text-emerald-800 mb-3 text-center">C/guardカバー工法</h3>
+              <ul className="space-y-2 text-slate-700">
+                <li className="font-bold text-orange-600">・解体・処分費を大幅カット！</li>
+                <li className="font-bold text-orange-600">・古い屋根を密閉しアスベスト対策にも！</li>
+                <li className="font-bold text-orange-600">・工期が短く、住みながら工事完了！</li>
+                <li className="font-bold text-orange-600">・二重屋根になるため断熱性・遮音性UP！</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-3xl font-bold text-emerald-900 mb-6 text-center">C/guardが向かないケース（誠実なご案内）</h2>
+        <p className="text-center text-slate-600 mb-8">当店では、無理にカバー工法をおすすめすることはありません。以下の場合は葺き替えをご提案します。</p>
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card className="bg-slate-50 border-t-4 border-t-slate-400">
+            <h3 className="font-bold text-lg mb-2">1. 雨漏りが重度の場合</h3>
+            <p className="text-slate-600 text-sm">下地の木材（野地板）まで腐食している場合は、上からかぶせても屋根を支えきれないため、下地からのやり直しが必要です。</p>
+          </Card>
+          <Card className="bg-slate-50 border-t-4 border-t-slate-400">
+            <h3 className="font-bold text-lg mb-2">2. 屋根が重い瓦屋根の場合</h3>
+            <p className="text-slate-600 text-sm">日本瓦などの重い屋根材の上にさらに屋根をかぶせると、耐震性に悪影響が出るため、原則としてコロニアル（スレート）屋根が対象です。</p>
+          </Card>
+          <Card className="bg-slate-50 border-t-4 border-t-slate-400">
+            <h3 className="font-bold text-lg mb-2">3. 過去にカバー工法をしている</h3>
+            <p className="text-slate-600 text-sm">すでに一度カバー工法を行っている屋根（三重屋根になる場合）は重量や構造上の問題でお受けできません。</p>
+          </Card>
+        </div>
+      </section>
+
+      <div className="text-center bg-emerald-50 p-10 rounded-xl border border-emerald-200 shadow-sm">
+        <h3 className="text-2xl font-bold text-emerald-900 mb-4">「我が家はC/guardで直せる？」と思ったら</h3>
+        <p className="mb-6 text-slate-700">まずは無料の現地調査をご利用ください。屋根に上り（またはドローン等で）、正確な状態を診断します。</p>
+        <Button onClick={() => navigate('contact')} className="text-xl px-10 py-4 shadow-lg">無料点検を申し込む</Button>
+      </div>
+    </div>
+  </div>
+);
+
+// 6. お客様の声（テンプレ実装）
+const VoicePage = () => (
+  <div className="animate-fadeIn pt-20">
+    <div className="bg-emerald-800 text-white py-16 px-4 text-center">
+      <h1 className="text-3xl md:text-5xl font-bold mb-4">お客様の声</h1>
+      <p className="text-xl text-emerald-100">築20年前後の屋根、同じ悩みを持つ方が選んでいます</p>
+    </div>
+    
+    <div className="container mx-auto max-w-4xl py-16 px-4 space-y-12">
+      {[
+        { area: '福井市', age: '60代ご夫婦', work: '屋根C/guard・雨樋工事',
+          q1: '雨漏りが心配でしたが、全部葺き替えるとなると予算が合わず悩んでいました。',
+          q2: 'カバー工法という選択肢を分かりやすく説明してくれたことと、地元の方なので安心感がありました。',
+          q3: '職人さんの挨拶が丁寧で、ご近所への配慮もしっかりしてくれました。',
+          q4: '見違えるほど綺麗になり、雨の日も安心して眠れます。費用も抑えられて助かりました。' },
+        { area: '坂井市', age: '50代女性', work: '屋根C/guard・外壁塗装',
+          q1: '訪問販売の人に「すぐ直さないと危険」と言われ不安になり、ネットではたさんを見つけました。',
+          q2: '急かすことなく、写真を見せながら冷静に今の状態を教えてくれた誠実さが決め手です。',
+          q3: '毎日の作業報告があり、留守にしていても安心してお任せできました。',
+          q4: '足場を組むついでに外壁もお願いして正解でした。新築のようになって嬉しいです。' },
+        { area: '鯖江市', age: '70代男性', work: '屋根C/guard',
+          q1: '築25年で屋根の色あせとコケが目立ち、みっともないと感じていました。',
+          q2: '見積もりが明朗会計で、余計な工事を勧めてこなかった点です。',
+          q3: '手際が良く、予定通りの工期で終わらせてくれました。',
+          q4: '綺麗になったのはもちろん、心なしか2階が涼しくなったように感じます。' },
+        { area: '越前市', age: '50代ご夫婦', work: '雨樋部分交換・屋根点検',
+          q1: '大雪の後に雨樋が外れてしまい、水が滝のように落ちてきて困っていました。',
+          q2: '小さな工事でもすぐに見に来てくれた対応の早さです。',
+          q3: 'ついでに屋根の点検も無料でしていただき、まだ大丈夫と言われて安心しました。',
+          q4: '何かあれば次も必ずはたさんにお願いしようと夫婦で話しています。' },
+        { area: '福井市', age: '60代男性', work: '屋根C/guard',
+          q1: '定年を機に、今後のメンテナンス費用がかからないようにリフォームを検討しました。',
+          q2: '建築鈑金の専門店ということで、雨漏り対策（雨仕舞い）の技術に信頼が持てました。',
+          q3: '黙々と真面目に作業される職人さんで、好感が持てました。',
+          q4: '予算内で大満足の仕上がりです。知人にも紹介したいと思います。' }
+      ].map((voice, i) => (
+        <div key={i} className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200 relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-orange-100 text-orange-800 px-4 py-2 rounded-bl-xl font-bold text-sm shadow-sm">
+            {voice.work}
+          </div>
+          <div className="flex items-center mb-6 border-b pb-4">
+            <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mr-4">
+              <ThumbsUp className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-emerald-900">{voice.area} / {voice.age}</h3>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <p className="font-bold text-slate-800 text-sm mb-1 bg-slate-100 p-2 rounded">Q. 工事前の悩みは？</p>
+              <p className="text-slate-700 pl-2 border-l-4 border-orange-400">{voice.q1}</p>
+            </div>
+            <div>
+              <p className="font-bold text-slate-800 text-sm mb-1 bg-slate-100 p-2 rounded">Q. 何が決め手で依頼しましたか？</p>
+              <p className="text-slate-700 pl-2 border-l-4 border-orange-400">{voice.q2}</p>
+            </div>
+            <div>
+              <p className="font-bold text-slate-800 text-sm mb-1 bg-slate-100 p-2 rounded">Q. 工事中の対応はいかがでしたか？</p>
+              <p className="text-slate-700 pl-2 border-l-4 border-orange-400">{voice.q3}</p>
+            </div>
+            <div>
+              <p className="font-bold text-slate-800 text-sm mb-1 bg-slate-100 p-2 rounded">Q. 仕上がり・今の感想をお聞かせください</p>
+              <p className="text-slate-700 pl-2 border-l-4 border-orange-400 font-medium text-emerald-800">{voice.q4}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+// 簡易版コンポーネント
+const SimplePage = ({ title, subtitle, children }) => (
+  <div className="animate-fadeIn pt-20">
+    <div className="bg-emerald-800 text-white py-16 px-4 text-center">
+      <h1 className="text-3xl md:text-5xl font-bold mb-4">{title}</h1>
+      {subtitle && <p className="text-xl text-emerald-100">{subtitle}</p>}
+    </div>
+    <div className="container mx-auto max-w-4xl py-16 px-4">
+      {children}
+    </div>
+  </div>
+);
+
+const PricePage = ({ navigate }) => (
+  <SimplePage title="料金の目安" subtitle="価格が分かるから安心。目安と条件を公開します">
+    <div className="space-y-8">
+      <Card className="border-t-8 border-t-emerald-600">
+        <h2 className="text-2xl font-bold text-emerald-900 mb-4 flex items-center"><Wrench className="mr-2"/> 屋根リフォーム（C/guard等）</h2>
+        <div className="text-4xl font-bold text-slate-800 mb-2">150〜250<span className="text-xl font-normal">万円</span></div>
+        <p className="text-slate-600 mb-4">足場代・材料費・施工費込み</p>
+        <div className="bg-slate-50 p-4 rounded text-sm text-slate-700">
+          <strong>追加になりやすいケース：</strong> 下地（野地板）の腐食が激しく、補修や張り替えが必要な場合。
+        </div>
+      </Card>
+      <Card className="border-t-8 border-t-emerald-600">
+        <h2 className="text-2xl font-bold text-emerald-900 mb-4 flex items-center"><Home className="mr-2"/> 外壁リフォーム</h2>
+        <div className="text-4xl font-bold text-slate-800 mb-2">200〜400<span className="text-xl font-normal">万円</span></div>
+        <p className="text-slate-600 mb-4">足場代込み / ガルバリウムやサイディングなど材料により変動</p>
+      </Card>
+      <Card className="border-t-8 border-t-emerald-600">
+        <h2 className="text-2xl font-bold text-emerald-900 mb-4 flex items-center"><CheckCircle className="mr-2"/> 雨樋工事</h2>
+        <div className="text-4xl font-bold text-slate-800 mb-2">20〜30<span className="text-xl font-normal">万円</span></div>
+        <p className="text-slate-600 mb-4">全交換の目安（部分交換の場合は数万円〜対応可能）</p>
+      </Card>
+      
+      <div className="bg-orange-50 p-6 rounded-lg text-center mt-10 border border-orange-200">
+        <p className="text-lg font-bold text-orange-800 mb-4">正確な金額は「無料現地調査」でお出しします</p>
+        <Button onClick={() => navigate('contact')}>無料見積もりを依頼する</Button>
+      </div>
+    </div>
+  </SimplePage>
+);
+
+const WorksPage = () => (
+  <SimplePage title="施工事例" subtitle="福井県内での実績を一部ご紹介します">
+    <div className="grid md:grid-cols-2 gap-8">
+      {[
+        { area: '福井市', age: '築22年', type: 'コロニアル', work: 'C/guardカバー工法', price: '180万円台', duration: '約1週間', img: '屋根カバー工法' },
+        { area: '坂井市', age: '築25年', type: 'コロニアル', work: 'C/guard ＋ 外壁塗装', price: '320万円台', duration: '約2週間', img: '屋根外壁セット' },
+        { area: '鯖江市', age: '築18年', type: '不明', work: '雨樋全交換', price: '25万円台', duration: '2日', img: '雨樋交換' }
+      ].map((work, i) => (
+        <Card key={i} className="overflow-hidden p-0">
+          <div className="h-48 bg-slate-200 flex items-center justify-center text-slate-500 font-bold relative">
+                          <div className="absolute top-2 left-2 bg-emerald-600 text-white px-3 py-1 text-sm font-bold rounded shadow-sm">
+               {work.work}
+             </div>
+          </div>
+          <div className="p-6">
+            <h3 className="text-xl font-bold mb-4 border-b pb-2">{work.area} / {work.age}</h3>
+            <ul className="space-y-2 text-sm text-slate-700 mb-4">
+              <li><span className="font-bold text-emerald-800 inline-block w-20">元の屋根材:</span> {work.type}</li>
+              <li><span className="font-bold text-emerald-800 inline-block w-20">工期:</span> {work.duration}</li>
+              <li><span className="font-bold text-emerald-800 inline-block w-20">参考価格:</span> <span className="text-lg font-bold text-orange-600">{work.price}</span></li>
+            </ul>
+            <p className="text-slate-600 text-sm bg-slate-50 p-3 rounded">
+              <strong>お客様の悩み：</strong> 塗装が剥がれ、見た目が悪くなってきた。葺き替えは高いので安く綺麗にしたい。<br/>
+              <strong>解決：</strong> C/guard工法により、予算内で新品同様の屋根に生まれ変わりました。
+            </p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </SimplePage>
+);
+
+const ContactPage = () => (
+  <div className="animate-fadeIn pt-20">
+    <div className="bg-emerald-800 text-white py-16 px-4 text-center">
+      <h1 className="text-3xl md:text-5xl font-bold mb-4">お問い合わせ・無料見積り</h1>
+      <p className="text-xl text-emerald-100">相見積もり歓迎。しつこい営業はいたしません。</p>
+    </div>
+    
+    <div className="container mx-auto max-w-4xl py-16 px-4">
+      <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <Card className="text-center border-t-8 border-t-orange-500 hover:shadow-xl transition-shadow cursor-pointer">
+          <Phone className="w-16 h-16 text-orange-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-slate-800 mb-2">お電話でのご相談</h2>
+          <p className="text-slate-600 mb-4">お急ぎの方、直接話したい方はこちら</p>
+          <div className="text-4xl font-extrabold text-orange-600 mb-2 tracking-wider">000-000-0000</div>
+          <p className="text-sm text-slate-500">営業時間 8:00〜18:00 (日祝休)</p>
+        </Card>
+        
+        <Card className="text-center border-t-8 border-t-[#06C755] hover:shadow-xl transition-shadow cursor-pointer">
+          <MessageCircle className="w-16 h-16 text-[#06C755] mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-slate-800 mb-2">LINEで写真相談</h2>
+          <p className="text-slate-600 mb-4">スマホで屋根の写真を送るだけで簡易診断！</p>
+          <Button variant="line" className="w-full text-xl py-4 shadow-[#06C755]/50">友だち追加して相談</Button>
+          <p className="text-sm text-slate-500 mt-2">24時間受付中</p>
+        </Card>
+      </div>
+
+      <div className="bg-slate-50 p-8 rounded-xl border border-slate-200">
+        <h2 className="text-2xl font-bold text-emerald-900 mb-6 flex items-center"><Mail className="mr-2"/> メールフォーム（24時間受付）</h2>
+        <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('デモ画面のため送信されません'); }}>
+          <div>
+            <label className="block text-sm font-bold text-slate-700 mb-2">お名前 <span className="text-red-500">*</span></label>
+            <input type="text" className="w-full p-3 border border-slate-300 rounded focus:ring-2 focus:ring-emerald-500 outline-none transition-shadow" placeholder="例：福井 太郎" required />
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-slate-700 mb-2">ご住所（市町まででOK） <span className="text-red-500">*</span></label>
+            <input type="text" className="w-full p-3 border border-slate-300 rounded focus:ring-2 focus:ring-emerald-500 outline-none transition-shadow" placeholder="例：福井市" required />
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-slate-700 mb-2">電話番号 <span className="text-red-500">*</span></label>
+            <input type="tel" className="w-full p-3 border border-slate-300 rounded focus:ring-2 focus:ring-emerald-500 outline-none transition-shadow" placeholder="例：090-0000-0000" required />
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-slate-700 mb-2">希望連絡方法</label>
+            <div className="flex gap-4">
+              <label className="flex items-center cursor-pointer"><input type="radio" name="contact_method" className="mr-2 w-4 h-4 text-emerald-600 focus:ring-emerald-500" defaultChecked /> お電話</label>
+              <label className="flex items-center cursor-pointer"><input type="radio" name="contact_method" className="mr-2 w-4 h-4 text-emerald-600 focus:ring-emerald-500" /> メール</label>
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-slate-700 mb-2">気になる箇所・症状</label>
+            <textarea rows="4" className="w-full p-3 border border-slate-300 rounded focus:ring-2 focus:ring-emerald-500 outline-none transition-shadow" placeholder="例：築20年で屋根のコケが気になります。見積もりをお願いします。"></textarea>
+          </div>
+          <div className="text-center pt-4">
+            <Button className="w-full md:w-auto px-16 py-4 text-xl shadow-lg">送信する</Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+);
+
+
+// --- Main App Component ---
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navigate = (page) => {
+    setCurrentPage(page);
+    setIsMobileMenuOpen(false);
+    window.scrollTo(0, 0);
+  };
+
+  const navItems = [
+    { id: 'home', label: 'ホーム' },
+    { id: 'roofing', label: '屋根リフォーム (C/guard)' },
+    { id: 'works', label: '施工事例' },
+    { id: 'price', label: '料金' },
+    { id: 'voice', label: 'お客様の声' },
+  ];
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home': return <HomePage navigate={navigate} />;
+      case 'roofing': return <RoofingPage navigate={navigate} />;
+      case 'works': return <WorksPage />;
+      case 'price': return <PricePage navigate={navigate} />;
+      case 'voice': return <VoicePage />;
+      case 'contact': return <ContactPage />;
+      default: return <HomePage navigate={navigate} />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen font-sans text-slate-800 bg-slate-50 selection:bg-emerald-200">
+      
+      {/* Header */}
+      <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-white/95 backdrop-blur-sm shadow-sm py-3'}`}>
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          
+          {/* Logo Area (変更点：画像のプレースホルダーを挿入) */}
+          <div 
+            className="flex items-center cursor-pointer group"
+            onClick={() => navigate('home')}
+          >
+            {/* メタリックな「畑」ロゴ画像のプレースホルダー */}
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-800 rounded-full flex items-center justify-center text-[10px] text-white mr-3 overflow-hidden border-2 border-emerald-600 group-hover:shadow-lg transition-all shadow-md shrink-0">
+                           </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] md:text-xs font-bold text-emerald-600 tracking-wider mb-0.5">福井の屋根・外壁・雨樋リフォーム</span>
+              <span className="text-xl md:text-2xl font-extrabold text-emerald-900 tracking-tight group-hover:text-emerald-700 transition-colors">建築鈑金はた</span>
+            </div>
+          </div>
+
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center space-x-6">
+            {navItems.map(item => (
+              <button 
+                key={item.id} 
+                onClick={() => navigate(item.id)}
+                className={`font-bold transition-colors ${currentPage === item.id ? 'text-orange-500 border-b-2 border-orange-500 pb-1' : 'text-slate-700 hover:text-emerald-600'}`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <div className="flex flex-col items-end border-l-2 border-slate-200 pl-6 ml-2">
+              <span className="text-xs font-bold text-slate-500 mb-1">お見積り・点検無料</span>
+              <button onClick={() => navigate('contact')} className="bg-orange-500 text-white font-bold py-2 px-6 rounded-full flex items-center hover:bg-orange-600 transition-colors shadow-md">
+                <Phone className="w-4 h-4 mr-2" /> お問い合わせ
+              </button>
+            </div>
+          </nav>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="lg:hidden p-2 text-emerald-900 hover:bg-emerald-50 rounded-lg transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          </button>
+        </div>
+
+        {/* Mobile Nav Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 flex flex-col">
+            {navItems.map(item => (
+              <button 
+                key={item.id} 
+                onClick={() => navigate(item.id)}
+                className="text-left py-4 px-6 border-b border-slate-100 font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700"
+              >
+                {item.label}
+              </button>
+            ))}
+            <button onClick={() => navigate('contact')} className="py-4 px-6 text-left font-bold text-orange-600 bg-orange-50 flex items-center">
+              <Phone className="w-5 h-5 mr-2" /> 無料点検・お問い合わせ
+            </button>
+          </div>
+        )}
+      </header>
+
+      {/* Main Content */}
+      <main className="min-h-[80vh]">
+        {renderPage()}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-emerald-950 text-slate-300 py-12 px-4 border-t-4 border-orange-500">
+        <div className="container mx-auto max-w-6xl grid md:grid-cols-3 gap-8">
+          <div>
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-[8px] text-white mr-3 overflow-hidden border border-emerald-600 shrink-0">
+                               </div>
+              <h2 className="text-2xl font-bold text-white">建築鈑金はた</h2>
+            </div>
+            <p className="mb-4 text-sm leading-relaxed text-slate-400">
+              福井県を中心に、屋根・外壁・雨樋のリフォームを行っています。
+              築15～30年のコロニアル屋根の「C/guardカバー工法」に強みを持っています。
+            </p>
+            <div className="flex items-center mt-4 text-slate-300">
+              <MapPin className="w-5 h-5 mr-2 text-emerald-500" />
+              <span>福井県〇〇市〇〇町0-0-0</span>
+            </div>
+            <div className="flex items-center mt-2 text-slate-300">
+              <Clock className="w-5 h-5 mr-2 text-emerald-500" />
+              <span>営業時間 8:00〜18:00 (日祝休)</span>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-white mb-4 border-b border-emerald-800 pb-2">メニュー</h3>
+            <ul className="space-y-3">
+              {navItems.map(item => (
+                <li key={item.id}>
+                  <button onClick={() => navigate(item.id)} className="hover:text-white transition-colors flex items-center text-sm">
+                    <ChevronRight className="w-4 h-4 mr-1 text-emerald-500" /> {item.label}
+                  </button>
+                </li>
+              ))}
+              <li>
+                <button onClick={() => navigate('contact')} className="hover:text-white transition-colors flex items-center text-sm">
+                  <ChevronRight className="w-4 h-4 mr-1 text-emerald-500" /> 会社案内・よくある質問
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-white mb-4 border-b border-emerald-800 pb-2">対応エリア</h3>
+            <p className="text-sm leading-relaxed text-slate-400">
+              福井市 / 坂井市 / 鯖江市 / 越前市 / あわら市 / 永平寺町 / その他福井県内<br />
+              <span className="text-xs text-emerald-500 mt-2 inline-block">※エリア外の場合もお気軽にご相談ください。</span>
+            </p>
+          </div>
+        </div>
+        <div className="text-center mt-12 pt-8 border-t border-emerald-900 text-sm text-slate-500">
+          &copy; {new Date().getFullYear()} 建築鈑金はた All Rights Reserved.
+        </div>
+      </footer>
+
+      {/* Floating CTA for Mobile */}
+      <div className="fixed bottom-0 left-0 w-full z-40 lg:hidden flex shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <button 
+          onClick={() => navigate('contact')}
+          className="flex-1 bg-[#06C755] text-white py-3 flex flex-col items-center justify-center font-bold text-xs"
+        >
+          <MessageCircle className="w-6 h-6 mb-1" />
+          LINE相談
+        </button>
+        <button 
+          onClick={() => navigate('contact')}
+          className="flex-1 bg-orange-500 text-white py-3 flex flex-col items-center justify-center font-bold text-xs"
+        >
+          <Phone className="w-6 h-6 mb-1" />
+          電話する
+        </button>
+      </div>
+      
+      {/* style tag for animations */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-out forwards;
+        }
+      `}} />
+    </div>
+  );
+}

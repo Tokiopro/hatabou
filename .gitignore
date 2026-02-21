@@ -1,0 +1,22 @@
+node_modules
+dist
+*.local
+
+# Editor / OS
+.vscode
+.idea
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# Zone.Identifier (Windows/WSL)
+*:Zone.Identifier
+
+# Logs
+*.log
+npm-debug.log*
+
+# Env
+.env
+.env.*
