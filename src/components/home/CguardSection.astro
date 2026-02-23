@@ -1,5 +1,5 @@
 ---
-import { Wrench, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import SectionTitle from '../SectionTitle.astro';
 import Card from '../Card.astro';
 
@@ -19,15 +19,14 @@ const benefits = [
 
     <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
       <div class="w-full md:w-1/2">
-        <div class="aspect-video bg-emerald-50 rounded-xl flex flex-col items-center justify-center border-2 border-dashed border-emerald-200 p-4 text-center">
-          <Wrench className="w-16 h-16 text-emerald-400 mb-4" />
-          <span class="text-emerald-700 font-bold mb-2">
-            既存屋根にかぶせる工法の図解
-          </span>
-          <span class="text-emerald-800 text-sm">
-            ※古い屋根を剥がさないため、廃材処分費や工期を大幅にカットできます
-          </span>
-        </div>
+        <img
+          src="/method.webp"
+          alt="C/guard（シーガード）カバー工法の図解：既存屋根の上に専用接着剤で新しい屋根材をかぶせる工法。廃材が出ない、工期短縮、アスベスト飛散リスクなし、住みながら工事可能"
+          width="800"
+          height="450"
+          class="w-full rounded-xl shadow-md"
+          loading="lazy"
+        />
       </div>
       <div class="w-full md:w-1/2">
         <h3 class="text-2xl font-bold text-emerald-900 mb-4">
