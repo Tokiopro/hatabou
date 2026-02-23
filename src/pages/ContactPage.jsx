@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { Phone, MessageCircle, Mail } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -6,6 +7,7 @@ import Breadcrumb from '../components/ui/Breadcrumb';
 import { createBreadcrumbList } from '../utils/structuredData';
 
 export default function ContactPage() {
+  const navigate = useNavigate();
   const bcItems = [{ label: 'お問い合わせ・無料見積り' }];
   const jsonLd = createBreadcrumbList([{ label: 'ホーム', path: '/' }, ...bcItems]);
 
@@ -72,7 +74,7 @@ export default function ContactPage() {
             className="space-y-6"
             onSubmit={(e) => {
               e.preventDefault();
-              alert('デモ画面のため送信されません');
+              navigate('/thanks');
             }}
           >
             <div>

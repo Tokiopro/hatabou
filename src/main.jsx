@@ -13,6 +13,8 @@ import VoicePage from './pages/VoicePage';
 import ContactPage from './pages/ContactPage';
 import FAQPage from './pages/FAQPage';
 import CompanyPage from './pages/CompanyPage';
+import AreaPage from './pages/AreaPage';
+import ThanksPage from './pages/ThanksPage';
 import NotFoundPage from './pages/NotFoundPage';
 import './index.css';
 
@@ -33,6 +35,8 @@ createRoot(document.getElementById('root')).render(
           <Route path="contact" element={<ContactPage />} />
           <Route path="faq" element={<FAQPage />} />
           <Route path="company" element={<CompanyPage />} />
+          <Route path="area/:slug" element={<AreaPage />} />
+          <Route path="thanks" element={<ThanksPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

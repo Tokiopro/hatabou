@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { MapPin, Clock, ChevronRight } from 'lucide-react';
 import { navItems, secondaryNavItems } from '../../data/navigation';
+import { areas } from '../../data/areas';
 
 export default function Footer() {
   const allNavItems = [...navItems, ...secondaryNavItems];
@@ -57,12 +58,21 @@ export default function Footer() {
           <h3 className="text-lg font-bold text-white mb-4 border-b border-emerald-800 pb-2">
             対応エリア
           </h3>
-          <p className="text-sm leading-relaxed text-slate-400">
-            福井市 / 坂井市 / 鯖江市 / 越前市 / あわら市 / 永平寺町 / その他福井県内
-            <br />
-            <span className="text-xs text-emerald-500 mt-2 inline-block">
-              ※エリア外の場合もお気軽にご相談ください。
-            </span>
+          <ul className="space-y-3">
+            {areas.map((area) => (
+              <li key={area.slug}>
+                <Link
+                  to={`/area/${area.slug}`}
+                  className="hover:text-white transition-colors flex items-center text-sm"
+                >
+                  <ChevronRight className="w-4 h-4 mr-1 text-emerald-500" />{' '}
+                  {area.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-emerald-500 mt-3">
+            ※エリア外の場合もお気軽にご相談ください。
           </p>
         </div>
       </div>

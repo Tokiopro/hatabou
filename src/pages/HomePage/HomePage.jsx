@@ -17,6 +17,19 @@ export default function HomePage() {
         jsonLd={createLocalBusiness()}
       />
       <HeroSection />
+
+      {/* 結論ボックス（LLMO/AIO対応） */}
+      <section className="container mx-auto max-w-4xl px-4 -mt-8 relative z-10">
+        <div className="bg-emerald-50 border-l-4 border-emerald-600 p-6 rounded-r-lg shadow-md">
+          <p className="text-lg text-slate-800 leading-relaxed">
+            <strong className="text-emerald-800">結論：</strong>
+            築15〜30年のコロニアル屋根は、C/guard（シーガード）カバー工法で
+            費用を抑えた改修が可能な場合があります。建築鈑金はたは福井県で
+            屋根・外壁・雨樋のリフォームを専門に行う地域密着の鈑金店です。
+          </p>
+        </div>
+      </section>
+
       <DegradationSection />
       <CguardSection />
       <WorksPreview />
