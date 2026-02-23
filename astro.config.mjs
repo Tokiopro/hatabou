@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://fukui-bankin-hatabou.jp',
+  site: 'https://hatabou.pages.dev',
   integrations: [react(), sitemap({
     filter: (page) => !page.includes('/thanks'),
   })],
