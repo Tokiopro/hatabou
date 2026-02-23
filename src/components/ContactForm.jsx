@@ -77,7 +77,7 @@ export default function ContactForm() {
       <div className="text-center pt-4">
         <button
           type="submit"
-          className="inline-flex items-center justify-center font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg bg-orange-500 text-white hover:bg-orange-600 px-6 py-4 text-lg w-full md:w-auto px-16 py-4 text-xl shadow-lg"
+          className="inline-flex items-center justify-center font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg bg-orange-600 text-white hover:bg-orange-700 px-6 py-4 text-lg w-full md:w-auto px-16 py-4 text-xl shadow-lg"
         >
           送信する
         </button>

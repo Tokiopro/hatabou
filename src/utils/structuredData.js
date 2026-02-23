@@ -9,9 +9,7 @@ export function createLocalBusiness() {
     telephone: company.phone,
     address: {
       '@type': 'PostalAddress',
-      addressRegion: company.address.prefecture,
-      addressLocality: company.address.city,
-      streetAddress: company.address.street,
+      addressRegion: company.prefecture,
       addressCountry: 'JP',
     },
     openingHours: 'Mo-Sa 08:00-18:00',
@@ -20,10 +18,13 @@ export function createLocalBusiness() {
       name: area,
     })),
     url: company.url,
+    image: `${company.url}/logo.webp`,
+    priceRange: '¥¥',
+    sameAs: [],
   };
 }
 
-export function createService({ name, description, priceRange }) {
+export function createService({ name, description, priceRange, url }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -36,8 +37,9 @@ export function createService({ name, description, priceRange }) {
     },
     areaServed: {
       '@type': 'State',
-      name: company.address.prefecture,
+      name: company.prefecture,
     },
+    ...(url && { url }),
     ...(priceRange && {
       offers: {
         '@type': 'Offer',

@@ -58,7 +58,7 @@ export default function Header({ currentPath = '/' }) {
             </span>
             <a
               href="/contact"
-              className="bg-orange-500 text-white font-bold py-2 px-6 rounded-full flex items-center hover:bg-orange-600 transition-colors shadow-md"
+              className="bg-orange-600 text-white font-bold py-2 px-6 rounded-full flex items-center hover:bg-orange-700 transition-colors shadow-md"
             >
               <Phone className="w-4 h-4 mr-2" /> お問い合わせ
             </a>
@@ -69,6 +69,7 @@ export default function Header({ currentPath = '/' }) {
         <button
           className="lg:hidden p-2 text-emerald-900 hover:bg-emerald-50 rounded-lg transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "メニューを閉じる" : "メニューを開く"}
         >
           {isMobileMenuOpen ? (
             <X className="w-8 h-8" />

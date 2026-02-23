@@ -34,6 +34,7 @@ const jsonLd = [
     name: serviceName || title,
     description: seoDescription,
     priceRange,
+    url: new URL(Astro.url.pathname, Astro.site).href,
   }),
 ];
 ---

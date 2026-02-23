@@ -1,5 +1,5 @@
 ---
-import { MapPin, Clock, Phone, Award, Users, Shield } from 'lucide-react';
+import { Clock, Phone, Award, Users, Shield } from 'lucide-react';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import CTABanner from '../components/CTABanner.astro';
@@ -13,7 +13,6 @@ const jsonLd = createBreadcrumbList([{ label: 'ホーム', path: '/' }, ...bcIte
 const companyInfo = [
   ['屋号', company.name],
   ['代表者', company.representative],
-  ['所在地', company.address.full],
   ['電話番号', company.phone],
   ['営業時間', `${company.hours}（${company.closed}）`],
   ['事業内容', '屋根工事・外壁工事・雨樋工事・板金工事全般'],
@@ -53,32 +52,38 @@ const companyInfo = [
         </div>
       </section>
 
-      {/* 代表挨拶 */}
+      {/* 代表者の声 */}
       <section>
         <h2 class="text-2xl md:text-3xl font-bold text-emerald-900 mb-8 text-center">
-          代表挨拶
+          代表者の声
         </h2>
         <div class="bg-white p-8 rounded-xl border border-slate-200">
           <div class="md:flex md:gap-8">
-            <div class="w-40 h-48 bg-slate-200 rounded-lg mx-auto md:mx-0 mb-6 md:mb-0 shrink-0 flex items-center justify-center text-slate-400 text-sm font-bold">
-              写真
-            </div>
+            <img
+              src="/representative.webp"
+              alt="代表 畑 直幸"
+              width="160"
+              height="192"
+              class="w-40 h-48 rounded-lg mx-auto md:mx-0 mb-6 md:mb-0 shrink-0 object-cover"
+            />
             <div class="space-y-4 text-slate-700 leading-relaxed">
               <p>
-                建築鈑金はたのページをご覧いただき、ありがとうございます。
+                建築鈑金はたのページをご覧いただき、ありがとうございます。<br />
+                代表の畑 直幸（ハタ ナオユキ）です。
               </p>
               <p>
-                私たちは福井県で、屋根・外壁・雨樋のリフォームを手がける建築板金の専門店です。
-                「雨仕舞い」と呼ばれる、雨水の流れを読み建物を雨漏りから守る技術を
-                大切にしながら、一棟一棟丁寧に施工しています。
+                私がこの仕事をしていて一番うれしいのは、お客様と「顔の見える関係」で
+                つながれることです。屋根や雨樋のことって、誰に相談すればいいか
+                わからないですよね。だからこそ、「あ、畑さんに聞いてみよう」と
+                気軽に思い出してもらえる存在でありたいと思っています。
               </p>
               <p>
-                訪問販売のような急かす営業は一切いたしません。
-                お客様のご予算と建物の状態を丁寧にヒアリングし、
-                本当に必要な工事だけをご提案いたします。
+                大きな会社のような派手さはありませんが、人と人とのつながりを大事にして、
+                一棟一棟、自分の家だと思って丁寧に施工しています。
+                屋根のことで少しでも気になることがあれば、どうぞお気軽にお声がけください。
               </p>
               <p class="font-bold text-emerald-800">
-                「ちょっと見てもらうだけ」でもお気軽にお声がけください。
+                福井の皆さまの「困った」に、まっすぐ向き合います。
               </p>
             </div>
           </div>
@@ -124,17 +129,13 @@ const companyInfo = [
         </div>
       </section>
 
-      {/* 所在地・営業時間 */}
+      {/* 営業時間・お問い合わせ */}
       <section>
         <h2 class="text-2xl md:text-3xl font-bold text-emerald-900 mb-8 text-center">
-          所在地・営業時間
+          営業時間・お問い合わせ
         </h2>
         <div class="bg-white p-8 rounded-xl border border-slate-200">
           <div class="space-y-4">
-            <div class="flex items-center">
-              <MapPin className="w-6 h-6 text-emerald-600 mr-3 shrink-0" />
-              <span class="text-slate-700">{company.address.full}</span>
-            </div>
             <div class="flex items-center">
               <Clock className="w-6 h-6 text-emerald-600 mr-3 shrink-0" />
               <span class="text-slate-700">
@@ -143,11 +144,10 @@ const companyInfo = [
             </div>
             <div class="flex items-center">
               <Phone className="w-6 h-6 text-emerald-600 mr-3 shrink-0" />
-              <span class="text-slate-700">{company.phone}</span>
+              <a href={`tel:${company.phone}`} class="text-emerald-700 font-bold hover:text-emerald-900 transition-colors">
+                {company.phone}
+              </a>
             </div>
-          </div>
-          <div class="mt-6 h-48 bg-slate-200 rounded-lg flex items-center justify-center text-slate-400 font-bold">
-            Google Maps プレースホルダー
           </div>
         </div>
       </section>

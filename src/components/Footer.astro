@@ -1,5 +1,5 @@
 ---
-import { MapPin, Clock, ChevronRight } from 'lucide-react';
+import { Phone, Clock, ChevronRight } from 'lucide-react';
 import { navItems, secondaryNavItems } from '../data/navigation';
 import { areas } from '../data/areas';
 import { company } from '../data/company';
@@ -16,11 +16,11 @@ const allNavItems = [...navItems, ...secondaryNavItems];
       </div>
       <p class="mb-4 text-sm leading-relaxed text-slate-400">
         福井県を中心に、屋根・外壁・雨樋のリフォームを行っています。
-        築15～30年のコロニアル屋根の「C/guardカバー工法」に強みを持っています。
+        築20～30年のコロニアル屋根の「C/guardカバー工法」に強みを持っています。
       </p>
       <div class="flex items-center mt-4 text-slate-300">
-        <MapPin className="w-5 h-5 mr-2 text-emerald-500" />
-        <span>{company.address.full}</span>
+        <Phone className="w-5 h-5 mr-2 text-emerald-500" />
+        <a href={`tel:${company.phone}`} class="hover:text-white transition-colors">{company.phone}</a>
       </div>
       <div class="flex items-center mt-2 text-slate-300">
         <Clock className="w-5 h-5 mr-2 text-emerald-500" />
@@ -76,7 +76,7 @@ const allNavItems = [...navItems, ...secondaryNavItems];
       </p>
     </div>
   </div>
-  <div class="text-center mt-12 pt-8 border-t border-emerald-900 text-sm text-slate-500">
+  <div class="text-center mt-12 pt-8 border-t border-emerald-900 text-sm text-slate-400">
     &copy; {new Date().getFullYear()} 建築鈑金はた All Rights Reserved.
   </div>
 </footer>

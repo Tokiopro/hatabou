@@ -7,7 +7,7 @@ import { works } from '../../data/works';
 const previewWorks = works.slice(0, 3);
 ---
 
-<section class="py-20 bg-white px-4">
+<section class="py-20 bg-emerald-50 px-4">
   <div class="container mx-auto max-w-5xl">
     <SectionTitle subtitle="福井県内での実績を一部ご紹介します">
       施工事例
@@ -16,7 +16,7 @@ const previewWorks = works.slice(0, 3);
       {previewWorks.map((work) => (
         <Card class="overflow-hidden p-0">
           <div class="h-40 bg-slate-200 flex items-center justify-center text-slate-500 font-bold relative">
-            <div class="absolute top-2 left-2 bg-emerald-600 text-white px-3 py-1 text-xs font-bold rounded shadow-sm">
+            <div class="absolute top-2 left-2 bg-emerald-700 text-white px-3 py-1 text-xs font-bold rounded shadow-sm">
               {work.work}
             </div>
           </div>
@@ -28,7 +28,7 @@ const previewWorks = works.slice(0, 3);
               <span class="font-bold text-emerald-800">工期:</span>{' '}
               {work.duration}
             </p>
-            <p class="text-lg font-bold text-orange-600">
+            <p class="text-lg font-bold text-orange-700">
               {work.price}
             </p>
           </div>

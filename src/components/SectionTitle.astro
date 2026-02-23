@@ -1,13 +1,14 @@
 ---
 interface Props {
   subtitle?: string;
+  dark?: boolean;
 }
 
-const { subtitle } = Astro.props;
+const { subtitle, dark = false } = Astro.props;
 ---
 
 <div class="text-center mb-12">
-  <h2 class="text-3xl md:text-4xl font-bold text-emerald-900 mb-4"><slot /></h2>
-  {subtitle && <p class="text-lg text-emerald-700 font-medium">{subtitle}</p>}
+  <h2 class:list={["text-3xl md:text-4xl font-bold mb-4", dark ? "text-white" : "text-emerald-900"]}><slot /></h2>
+  {subtitle && <p class:list={["text-lg font-medium", dark ? "text-emerald-200" : "text-emerald-700"]}>{subtitle}</p>}
   <div class="w-24 h-1 bg-orange-500 mx-auto mt-6 rounded-full"></div>
 </div>

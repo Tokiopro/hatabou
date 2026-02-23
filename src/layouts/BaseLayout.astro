@@ -48,7 +48,11 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL.href} />
     {ga4Id && (
       <>
@@ -67,7 +71,7 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     ))}
   </head>
   <body>
-    <div class="min-h-screen font-sans text-slate-800 bg-slate-50 selection:bg-emerald-200">
+    <div class="min-h-screen font-sans text-slate-800 bg-emerald-50 selection:bg-emerald-200">
       <Header client:load currentPath={currentPath} />
       <main class="min-h-[80vh]">
         <slot />

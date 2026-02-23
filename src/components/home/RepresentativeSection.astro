@@ -1,0 +1,55 @@
+---
+import { ArrowRight, Phone } from 'lucide-react';
+import SectionTitle from '../SectionTitle.astro';
+import { company } from '../../data/company';
+---
+
+<section class="py-20 bg-emerald-900 px-4">
+  <div class="container mx-auto max-w-4xl">
+    <SectionTitle subtitle="人と人とのつながりを大事に" dark>
+      代表者の声
+    </SectionTitle>
+
+    <div class="bg-white rounded-2xl p-8 md:p-10 border border-emerald-700 mt-12">
+      <div class="md:flex md:gap-10 items-start">
+        <img
+          src="/representative.webp"
+          alt="代表 畑 直幸"
+          width="200"
+          height="240"
+          loading="lazy"
+          class="w-48 h-56 rounded-xl mx-auto md:mx-0 mb-8 md:mb-0 shrink-0 object-cover shadow-md"
+        />
+        <div class="space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            建築鈑金はたのページをご覧いただき、ありがとうございます。<br />
+            代表の<strong class="text-emerald-800">畑 直幸</strong>（ハタ ナオユキ）です。
+          </p>
+          <p>
+            私がこの仕事をしていて一番うれしいのは、お客様と「顔の見える関係」で
+            つながれることです。「あ、畑さんに聞いてみよう」と
+            気軽に思い出してもらえる存在でありたいと思っています。
+          </p>
+          <p>
+            一棟一棟、自分の家だと思って丁寧に施工しています。
+            屋根のことで少しでも気になることがあれば、どうぞお気軽にお声がけください。
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a
+              href="/company"
+              class="inline-flex items-center bg-white text-emerald-700 font-bold px-6 py-3 rounded-lg border border-emerald-300 hover:bg-emerald-100 transition-colors text-sm"
+            >
+              会社案内を見る <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+            <a
+              href={`tel:${company.phone}`}
+              class="inline-flex items-center bg-orange-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors text-sm"
+            >
+              <Phone className="w-4 h-4 mr-2" /> 無料相談する
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
