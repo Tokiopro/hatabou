@@ -11,7 +11,7 @@ export const company = {
   phone: '000-000-0000',
   hours: '8:00〜18:00',
   closed: '日祝休',
-  url: 'https://hatabou.com',
+  url: 'https://fukui-bankin-hatabou.jp',
   description:
     '福井県を中心に、屋根・外壁・雨樋のリフォームを行っています。築15～30年のコロニアル屋根の「C/guardカバー工法」に強みを持っています。',
   areas: [

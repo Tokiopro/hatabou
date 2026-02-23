@@ -2,6 +2,7 @@
 import { MapPin, Clock, ChevronRight } from 'lucide-react';
 import { navItems, secondaryNavItems } from '../data/navigation';
 import { areas } from '../data/areas';
+import { company } from '../data/company';
 
 const allNavItems = [...navItems, ...secondaryNavItems];
 ---
@@ -10,7 +11,7 @@ const allNavItems = [...navItems, ...secondaryNavItems];
   <div class="container mx-auto max-w-6xl grid md:grid-cols-3 gap-8">
     <div>
       <div class="flex items-center mb-4">
-        <img src="/ロゴ.png" alt="建築鈑金はた" class="w-10 h-10 rounded-full object-cover border border-emerald-600 shrink-0 mr-3" />
+        <img src="/logo.webp" alt="建築鈑金はた" width="40" height="40" class="w-10 h-10 rounded-full object-cover border border-emerald-600 shrink-0 mr-3" />
         <h2 class="text-2xl font-bold text-white">建築鈑金はた</h2>
       </div>
       <p class="mb-4 text-sm leading-relaxed text-slate-400">
@@ -19,7 +20,7 @@ const allNavItems = [...navItems, ...secondaryNavItems];
       </p>
       <div class="flex items-center mt-4 text-slate-300">
         <MapPin className="w-5 h-5 mr-2 text-emerald-500" />
-        <span>福井県〇〇市〇〇町0-0-0</span>
+        <span>{company.address.full}</span>
       </div>
       <div class="flex items-center mt-2 text-slate-300">
         <Clock className="w-5 h-5 mr-2 text-emerald-500" />

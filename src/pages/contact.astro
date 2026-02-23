@@ -6,6 +6,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import Card from '../components/Card.astro';
 import ContactForm from '../components/ContactForm.jsx';
 import { createBreadcrumbList } from '../utils/structuredData';
+import { company } from '../data/company';
 
 const bcItems = [{ label: 'お問い合わせ・無料見積り' }];
 const jsonLd = createBreadcrumbList([{ label: 'ホーム', path: '/' }, ...bcItems]);
@@ -25,7 +26,7 @@ const jsonLd = createBreadcrumbList([{ label: 'ホーム', path: '/' }, ...bcIte
 
     <div class="container mx-auto max-w-4xl py-16 px-4">
       <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <a href="tel:000-000-0000" class="block">
+        <a href={`tel:${company.phone}`} class="block">
           <Card class="text-center border-t-8 border-t-orange-500 hover:shadow-xl transition-shadow cursor-pointer h-full">
             <Phone className="w-16 h-16 text-orange-500 mx-auto mb-4" />
             <h2 class="text-2xl font-bold text-slate-800 mb-2">
@@ -35,7 +36,7 @@ const jsonLd = createBreadcrumbList([{ label: 'ホーム', path: '/' }, ...bcIte
               お急ぎの方、直接話したい方はこちら
             </p>
             <div class="text-4xl font-extrabold text-orange-600 mb-2 tracking-wider">
-              000-000-0000
+              {company.phone}
             </div>
             <p class="text-sm text-slate-500">
               営業時間 8:00〜18:00 (日祝休)
