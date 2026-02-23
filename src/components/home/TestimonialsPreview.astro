@@ -1,0 +1,43 @@
+---
+import { ArrowRight, ThumbsUp } from 'lucide-react';
+import SectionTitle from '../SectionTitle.astro';
+import { testimonials } from '../../data/testimonials';
+
+const previewVoices = testimonials.slice(0, 3);
+---
+
+<section class="py-20 bg-slate-50 px-4">
+  <div class="container mx-auto max-w-5xl">
+    <SectionTitle subtitle="築20年前後の屋根、同じ悩みを持つ方が選んでいます">
+      お客様の声
+    </SectionTitle>
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      {previewVoices.map((voice) => (
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mr-3 shrink-0">
+              <ThumbsUp className="w-5 h-5" />
+            </div>
+            <div>
+              <p class="font-bold text-emerald-900 text-sm">
+                {voice.area} / {voice.age}
+              </p>
+              <p class="text-xs text-orange-600 font-bold">
+                {voice.work}
+              </p>
+            </div>
+          </div>
+          <p class="text-slate-700 text-sm line-clamp-4">{voice.q4}</p>
+        </div>
+      ))}
+    </div>
+    <div class="text-center mt-10">
+      <a
+        href="/voice"
+        class="inline-flex items-center font-bold text-emerald-700 hover:text-emerald-900 text-lg transition-colors"
+      >
+        お客様の声をもっと見る <ArrowRight className="w-5 h-5 ml-2" />
+      </a>
+    </div>
+  </div>
+</section>

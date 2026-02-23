@@ -28,10 +28,10 @@ async function main() {
 
   const lines = [
     "# Google Analytics 4",
-    `VITE_GA4_ID=${ga4Id}`,
+    `PUBLIC_GA4_ID=${ga4Id}`,
     "",
     "# Google Search Console",
-    `VITE_GSC_VERIFICATION=${gscCode}`,
+    `PUBLIC_GSC_VERIFICATION=${gscCode}`,
     "",
   ];
 

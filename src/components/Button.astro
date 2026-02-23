@@ -1,0 +1,43 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'line' | 'outline';
+  class?: string;
+  href?: string;
+  type?: string;
+}
+
+const variants: Record<string, string> = {
+  primary: 'bg-orange-500 text-white hover:bg-orange-600 px-6 py-4 text-lg',
+  secondary: 'bg-emerald-800 text-white hover:bg-emerald-900 px-6 py-4 text-lg',
+  line: 'bg-line-green text-white hover:bg-line-green-hover px-6 py-4 text-lg',
+  outline: 'border-2 border-emerald-800 text-emerald-800 hover:bg-emerald-50 px-4 py-2 text-md',
+};
+
+const { variant = 'primary', class: className = '', href, type } = Astro.props;
+
+const baseStyle = 'inline-flex items-center justify-center font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg';
+const classes = `${baseStyle} ${variants[variant]} ${className}`;
+
+const isExternal = href && (href.startsWith('http') || href.startsWith('tel:') || href.startsWith('mailto:'));
+---
+
+{href ? (
+  isExternal ? (
+    <a
+      href={href}
+      class={classes}
+      target={href.startsWith('http') ? '_blank' : undefined}
+      rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+    >
+      <slot />
+    </a>
+  ) : (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  )
+) : (
+  <button type={type} class={classes}>
+    <slot />
+  </button>
+)}

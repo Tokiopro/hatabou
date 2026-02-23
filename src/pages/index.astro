@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import DegradationSection from '../components/home/DegradationSection.astro';
+import CguardSection from '../components/home/CguardSection.astro';
+import WorksPreview from '../components/home/WorksPreview.astro';
+import TestimonialsPreview from '../components/home/TestimonialsPreview.astro';
+import PricingOverview from '../components/home/PricingOverview.astro';
+import ProcessSection from '../components/home/ProcessSection.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { createLocalBusiness } from '../utils/structuredData';
+---
+
+<BaseLayout
+  description="福井県の屋根・外壁・雨樋リフォーム専門店。C/guard（シーガード）カバー工法で費用を抑えた屋根リフォームをご提案。無料点検・お見積り実施中。"
+  jsonLd={createLocalBusiness()}
+>
+  <div class="animate-fade-in">
+    <HeroSection />
+
+    {/* 結論ボックス（LLMO/AIO対応） */}
+    <section class="container mx-auto max-w-4xl px-4 -mt-8 relative z-10">
+      <div class="bg-emerald-50 border-l-4 border-emerald-600 p-6 rounded-r-lg shadow-md">
+        <p class="text-lg text-slate-800 leading-relaxed">
+          <strong class="text-emerald-800">結論：</strong>
+          築15〜30年のコロニアル屋根は、C/guard（シーガード）カバー工法で
+          費用を抑えた改修が可能な場合があります。建築鈑金はたは福井県で
+          屋根・外壁・雨樋のリフォームを専門に行う地域密着の鈑金店です。
+        </p>
+      </div>
+    </section>
+
+    <DegradationSection />
+    <CguardSection />
+    <WorksPreview />
+    <TestimonialsPreview />
+    <PricingOverview />
+    <ProcessSection />
+    <CTABanner />
+  </div>
+</BaseLayout>

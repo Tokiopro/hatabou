@@ -1,0 +1,47 @@
+---
+import { ArrowRight } from 'lucide-react';
+import SectionTitle from '../SectionTitle.astro';
+import Card from '../Card.astro';
+import { works } from '../../data/works';
+
+const previewWorks = works.slice(0, 3);
+---
+
+<section class="py-20 bg-white px-4">
+  <div class="container mx-auto max-w-5xl">
+    <SectionTitle subtitle="福井県内での実績を一部ご紹介します">
+      施工事例
+    </SectionTitle>
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      {previewWorks.map((work) => (
+        <Card class="overflow-hidden p-0">
+          <div class="h-40 bg-slate-200 flex items-center justify-center text-slate-500 font-bold relative">
+            <div class="absolute top-2 left-2 bg-emerald-600 text-white px-3 py-1 text-xs font-bold rounded shadow-sm">
+              {work.work}
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg mb-2">
+              {work.area} / {work.age}
+            </h3>
+            <p class="text-sm text-slate-600 mb-1">
+              <span class="font-bold text-emerald-800">工期:</span>{' '}
+              {work.duration}
+            </p>
+            <p class="text-lg font-bold text-orange-600">
+              {work.price}
+            </p>
+          </div>
+        </Card>
+      ))}
+    </div>
+    <div class="text-center mt-10">
+      <a
+        href="/works"
+        class="inline-flex items-center font-bold text-emerald-700 hover:text-emerald-900 text-lg transition-colors"
+      >
+        施工事例をもっと見る <ArrowRight className="w-5 h-5 ml-2" />
+      </a>
+    </div>
+  </div>
+</section>

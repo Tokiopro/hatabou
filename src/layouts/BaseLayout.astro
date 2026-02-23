@@ -1,0 +1,74 @@
+---
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.astro';
+import MobileCTA from '../components/MobileCTA.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  jsonLd?: object | object[];
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = '福井県の屋根・外壁・雨樋リフォーム専門店。C/guardカバー工法で費用を抑えた屋根リフォームをご提案。現地調査・お見積り無料。',
+  noindex = false,
+  jsonLd,
+  ogImage = '/hatabou-OGP.jpg',
+} = Astro.props;
+
+const fullTitle = title ? `${title}｜建築鈑金はた` : '建築鈑金はた｜福井県の屋根・外壁・雨樋リフォーム';
+const currentPath = Astro.url.pathname;
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
+
+const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/ロゴ.png" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="建築鈑金はた" />
+    <meta property="og:title" content={fullTitle} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    {ga4Id && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
+        <script define:vars={{ ga4Id }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', ga4Id);
+        </script>
+      </>
+    )}
+    {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
+    {jsonLdArray.map((data) => (
+      <script type="application/ld+json" set:html={JSON.stringify(data)} />
+    ))}
+  </head>
+  <body>
+    <div class="min-h-screen font-sans text-slate-800 bg-slate-50 selection:bg-emerald-200">
+      <Header client:load currentPath={currentPath} />
+      <main class="min-h-[80vh]">
+        <slot />
+      </main>
+      <Footer />
+      <MobileCTA />
+    </div>
+  </body>
+</html>

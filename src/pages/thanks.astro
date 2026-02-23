@@ -1,0 +1,32 @@
+---
+import { CheckCircle, Home, Phone } from 'lucide-react';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout title="送信完了" noindex>
+  <div class="animate-fade-in pt-20 min-h-[80vh] flex items-center justify-center px-4">
+    <div class="text-center max-w-lg">
+      <CheckCircle className="w-20 h-20 text-emerald-600 mx-auto mb-6" />
+      <h1 class="text-2xl md:text-3xl font-bold text-emerald-900 mb-4">
+        お問い合わせありがとうございます
+      </h1>
+      <p class="text-slate-600 mb-4 leading-relaxed">
+        内容を確認のうえ、2営業日以内にご連絡いたします。
+      </p>
+      <p class="text-slate-500 text-sm mb-8 leading-relaxed">
+        お急ぎの場合は、お電話（000-000-0000）でもお気軽にご連絡ください。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/">
+          <Home className="w-5 h-5 mr-2" />
+          ホームに戻る
+        </Button>
+        <Button href="tel:000-000-0000" variant="outline">
+          <Phone className="w-5 h-5 mr-2" />
+          電話で相談
+        </Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
